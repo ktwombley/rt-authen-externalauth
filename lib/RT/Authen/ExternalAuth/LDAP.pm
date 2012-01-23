@@ -3,7 +3,6 @@ package RT::Authen::ExternalAuth::LDAP;
 use Net::LDAP qw(LDAP_SUCCESS LDAP_PARTIAL_RESULTS);
 use Net::LDAP::Util qw(ldap_error_name);
 use Net::LDAP::Filter;
-use Net::LDAPS;
 
 use strict;
 
@@ -435,10 +434,11 @@ sub _GetBoundLdapObj {
     
     my $ldap = 0;
     if ($use_ldaps) {
-        $ldap = new Net::LDAPS($ldap_server, @$ldap_args);
+        require Net::LDAPS;
+        $ldap = Net::LDAPS->new($ldap_server, @$ldap_args);
     }
     else {
-        $ldap = new Net::LDAP($ldap_server, @$ldap_args);
+        $ldap = Net::LDAP->new($ldap_server, @$ldap_args);
     }
     
     
