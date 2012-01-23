@@ -435,10 +435,10 @@ sub _GetBoundLdapObj {
     
     my $ldap = 0;
     if ($use_ldaps) {
-		$ldap = new Net::LDAPS($ldap_server, @$ldap_args);
+        $ldap = new Net::LDAPS($ldap_server, @$ldap_args);
     }
     else {
-		$ldap = new Net::LDAP($ldap_server, @$ldap_args);
+        $ldap = new Net::LDAP($ldap_server, @$ldap_args);
     }
     
     
